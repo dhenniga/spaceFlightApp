@@ -1,16 +1,40 @@
-import styled, { css } from "styled-components";
+import styled, {
+  css
+} from "styled-components";
 import background from "./images/background_wide.jpg";
-import fullTiltLogo from "./images/full_tilt_logo.png";
-import launchButton from "./images/launch_button.png";
 
-export const Application = styled.div`
-  position: relative;
+export const Background = styled.div `
   background-image: url(${background});
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
   height: 100vh;
   width: 100vw;
+  overflow: hidden;
+  -webkit-animation: slowpan 50s linear 0s infinite alternate;
+  position:fixed;
+  z-index: -1;
+  top: 0px;
+  left: 0px;
+  @keyframes slowpan {
+ 0% {
+    transform:translateX(-100px) scale(1.25);
+  }
+  
+  100% {
+    transform:translateX(100px) scale(1.25);
+  }
+  
+}
+`
+
+export const Application = styled.div `
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  display: grid !important;
+  grid-template-areas: "header" "content" "footer" "subfooter";
+  grid-template-rows: 2fr 8fr 0.7fr 1fr;
 
   * {
     padding: 0;
@@ -19,77 +43,83 @@ export const Application = styled.div`
   }
 `;
 
-export const FullTiltLogo = styled.div`
+
+
+export const FullTiltLogoImage = styled.img `
   position: absolute;
-  top: 30px;
-  left: 30px;
-  background-image: url(${fullTiltLogo});
-  height: 192px;
-  width: 269px;
-  z-index: 10;
+  top: 3vh;
+  left: 3vh;
+  height: auto;
+  width: 15%;
 `;
 
-export const LaunchButton = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  background-image: url(${launchButton});
-  height: 150px;
-  width: 768px;
-  transform: translate(-50%, -50%);
-  z-index: 10;
-  cursor: pointer;
-`;
-
-export const Header = styled.div`
-  width: 100vw;
-  padding: 80px 0px;
-
+export const Header = styled.div `
+  width: 70vw;
+  grid-area: header;
   text-align: center;
   color: white;
+  padding-top: 40px;
+  margin: 0px auto;
+  max-width: 800px;
+
+  @media (max-width: 700px) {
+    width: 90vw;
+  }
 `;
 
-export const HeaderH1 = styled.h1`
-  font-size: 4em;
-`;
-
-export const HeaderSpan = styled.span`
+export const HeaderH1 = styled.h1 `
+  font-size: 30pt;
   display: block;
+  
+  @media (max-width: 700px) {
+    font-size: 16pt;
+  }
+`;
+
+export const HeaderSpan = styled.span `
   font-family: sans-serif;
-  font-size: 2em;
-  width: 60% !important;
+  font-size: 20pt;
+  margin: 0px auto;
   text-align: center;
-  margin-left: auto;
-  margin-right: auto;
+
+  @media (max-width: 700px) {
+    font-size: 9pt;
+  }
+
 `;
 
-export const Footer = styled.div`
-  background-color: rgba(0, 0, 0, 0.3);
-  position: absolute;
-  bottom: 10%;
-  left: 0;
+export const Footer = styled.div `
+  background-color: rgba(0, 0, 0, 0.2);
   width: 100vw;
-  height: 20%;
+  overflow: hidden;
+  grid-area: footer;
 `;
 
-export const SubFooter = styled.div`
-  position: absolute;
-  background-color: rgba(0, 0, 0, 0.9);
-  height: 12%;
-  bottom: 0px;
+export const LaunchButton = styled.img `
+  width: auto;
+  height: 100%;
+  display: block;
+  margin: 0px auto;
+`;
+
+export const SubFooter = styled.div `
+  background-color: rgba(0, 0, 0, 0.8);
   width: 100vw;
   color: white;
   text-align: center;
+  grid-area: subfooter;
+  align-self: self-end;
+  padding: 20px 0px;
 `;
 
-export const SubFooterSpan = styled.span`
+export const SubFooterSpan = styled.span `
   color: white;
   font-family: sans-serif;
   font-weight: 100;
   font-size: 2vh;
 `;
 
-export const SubFooterSubText = styled.p`
+export const SubFooterSubText = styled.p `
   color: white;
   font-family: sans-serif;
   font-weight: 100;
@@ -102,39 +132,48 @@ export const SubFooterSubText = styled.p`
 
 ////////////////////////////////////
 
-export const Content = styled.div`
-  background-color: rgba(0, 0, 0, 0.2);
+export const Content = styled.div `
   text-align: center;
-  min-width: 600px;
-  max-width: 1130px;
-  margin-left: auto;
-  margin-right: auto;
   pointer-events: none;
   user-select: none;
+  grid-area: content;
+  align-self: center;
+
 `;
 
-export const Card = styled.div`
+export const Card = styled.div `
   background-color: white;
-  width: 200px;
-  height: 120px;
+  width: 10vw;
+  height: 100%;
   display: inline-block;
-  margin: 20px;
-  padding: 20px;
+  margin: auto 10px;
+  padding-bottom: 10px;
+  overflow: hidden;
   z-index: 20000;
   border-radius: 5px;
   box-shadow: 10px 10px 30px 0px black;
+
+  @media (max-width: 700px) {
+    width: 10vh;
+  }
 `;
 
-export const Image = styled.img`
-  width: 100px;
-  height: 100px;
+export const CardText = styled.p`
+  font-size: 1.5vh;
+`
+
+export const Image = styled.img `
+  width: 100%;
+  height: auto;
+  background-size: cover;
   pointer-events: none;
   user-select: none;
+  padding-bottom: 10px;
 `;
 
-export const InitialCardsContainer = styled.div``;
+export const InitialCardsContainer = styled.div ``;
 
-export const PartnerCardsContainer = styled.div`
+export const PartnerCardsContainer = styled.div `
   transition: all 2s cubic-bezier(0, 0, 0, 1);
   filter: brightness(0);
   opacity: 0.5;
@@ -147,9 +186,9 @@ export const PartnerCardsContainer = styled.div`
     `}
 `;
 
-export const InfoText = styled.div`
+export const InfoText = styled.div `
   font-family: sans-serif;
-  font-size: 16pt;
+  font-size: 2vh;
   color: white;
   padding: 20px;
   font-weight: 900;
